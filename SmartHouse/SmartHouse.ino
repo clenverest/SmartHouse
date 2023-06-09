@@ -45,7 +45,8 @@ const char* panelTemperature = "Temperature";
 const char* panelLuminosity = "Luminosity";
 const char* panelLight = "Light";
 const char* panelAuto = "Auto";
-const char* panelLightsPWM = "LightsPWM";
+const char* panelLightPWM = "LightPWM";
+const char* panelLightThreshold = "LightThreshold";
 
 // Если панель использует ключ
 // const char* key = "ключ";
@@ -97,12 +98,14 @@ void setup()
 void loop()
 {
     bool light = mypanel.readBool(panelLight);
-    int lightsPWM = mypanel.readInt(panelLightsPWM);
+    int lightThreshold = mypanel.readInt(panelLightThreshold);
+    Auto = mypanel.readBool(panelAuto);
+    
 
     //-------------------------------------------------------
     
     //влажность
-    int avalue=analogRead(SOILMOISTUREPIN)
+    int avalue = analogRead(SOILMOISTUREPIN)
     avalue = constrain(avalue, MINVALUESOILMOISTURE,MAXVALUESOILMOISTURE);
     humidity = map(avalue, MIN, MAX, 0, 100);  // адаптируем значения от 0 до 100,
 
@@ -120,12 +123,12 @@ void loop()
     //  Если освещённость меньше установленного порога
     if (luminosity < lightThreshold && Auto) {
         // Включаем свет
-        lightsIn(lum);
+        lightsIn(luminosity);
     }
     //  Если не автоматический режим и флаг света установлен
     else if (!Auto && light) {
         // Включаем свет
-        lightsIn(mypanel.readInt(panelLightsPWM));
+        lightsIn(mypanel.readInt(panelLightPWM));
     }
     //  Иначе
     else {
@@ -172,11 +175,8 @@ void lightsIn(int l)
         // устанавливаем ШИМ, переданный функции
         pwm = uint8_t(l);
 
-    //  Устанавливаем вывод к которому подключена светодиодная лента
-    // в режим "выход"
-    pinMode(LED_PIN, OUTPUT);
-    //  Устанавливаем ШИМ на выводе
-    analogWrite(LED_PIN, pwm);
+    pinMode(LED_PIN, OUTPUT); //  Устанавливаем вывод к которому подключена светодиодная лента в режим "выход"
+    analogWrite(LED_PIN, pwm); //  Устанавливаем ШИМ на выводе
 
     //  Если установлен автоматический режим работы, обновляем переключатель
     // света на сайте
