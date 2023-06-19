@@ -1,4 +1,4 @@
-# SmartHouse
+<h1 align="center">IGardenable</h1>
  
 ## Демонстарция проекта
 
