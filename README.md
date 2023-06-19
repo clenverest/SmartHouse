@@ -11,4 +11,10 @@
 <img src="./readme_assets/gif3.gif" alt="ON/OFF light" width="100%">
 
 
+<img src="./readme_assets/gif4.gif" alt="change brightness of the light" width="100%">
+
+
+<img src="./readme_assets/gif5.gif" alt="auto mode" width="100%">
+
+
 ___
