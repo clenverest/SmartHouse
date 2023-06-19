@@ -6,4 +6,9 @@
 
 
 <img src="./readme_assets/gif2.gif" alt="change luminosity" width="100%">
+
+
+<img src="./readme_assets/gif3.gif" alt="ON/OFF light" width="100%">
+
+
 ___
